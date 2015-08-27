@@ -1,6 +1,9 @@
 
 public class tictactoe {
 
+	private static final char g = 0;
+	private static final char _ = 0;
+
 	public static void main(String[] args) {
 		/*psuedo code for tic tac toe
 		program starts and creates 9 variables one for each square
@@ -26,7 +29,23 @@ public class tictactoe {
 		 			X|X|X
 		 			 |O|O
 		 			player 1 wins!*/
-
+		//char one, two, three, four, five, six = _;
+		char[] gameboard = new char[9];
+		for (int i=0; i<9; i++){
+			gameboard[i]= '_';
+			System.out.print(gameboard[i]+" ");
+			}
+		//char seven, eight, nine = ;
+		boolean game = true;
+		boolean drawgrid = true;
+		
+		while (game=true);
+			while (drawgrid = true); {}
+				for (int x=0; x<3; x++); {
+					System.out.println("");
+				};
 	}
-
 }
+
+	
+
