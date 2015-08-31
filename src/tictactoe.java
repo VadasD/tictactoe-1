@@ -1,8 +1,6 @@
-
+import java.util.Scanner;
 public class tictactoe {
 
-	private static final char g = 0;
-	private static final char _ = 0;
 
 	public static void main(String[] args) {
 		/*psuedo code for tic tac toe
@@ -33,19 +31,32 @@ public class tictactoe {
 		char[] gameboard = new char[9];
 		for (int i=0; i<9; i++){
 			gameboard[i]= '_';
-			System.out.print(gameboard[i]+" ");
+			if (i>6){
+				gameboard[i]=' ';
 			}
+			//System.out.print(gameboard[i]);
+		}
 		//char seven, eight, nine = ;
-		boolean game = true;
-		boolean drawgrid = true;
-		
-		while (game=true);
-			while (drawgrid = true); {}
-				for (int x=0; x<3; x++); {
-					System.out.println("");
-				};
+		//boolean game = true;
+			//while (game=true){
+		drawgrid(gameboard);
+	}
+				
+		//}
+			
+
+	public static void drawgrid(char[] gameboard) {
+		int y = 0;
+		for (int t=0; t<9; t++) {
+			System.out.print(gameboard[t]+"|");
+			y++;
+			//System.out.print(y);
+			if (y>2){
+				System.out.print("\n");
+				y=0;
+			}
+		}
 	}
 }
-
 	
 
