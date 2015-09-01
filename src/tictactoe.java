@@ -31,28 +31,39 @@ public class tictactoe {
 		char[] gameboard = new char[9];
 		for (int i=0; i<9; i++){
 			gameboard[i]= '_';
-			if (i>6){
+			if (i>5){
 				gameboard[i]=' ';
 			}
 			//System.out.print(gameboard[i]);
 		}
 		//char seven, eight, nine = ;
-		//boolean game = true;
-			//while (game=true){
-		drawgrid(gameboard);
-	}
+		boolean game = true;
+			while (game=true){
+				drawgrid(gameboard);
+				System.out.print("\n");
+				System.out.println("player 1 select a square 1-9");
+				Scanner in = new Scanner (System.in);
+				String coordinate = in.nextLine();
+			}
 				
-		//}
+	}
 			
 
 	public static void drawgrid(char[] gameboard) {
 		int y = 0;
 		for (int t=0; t<9; t++) {
-			System.out.print(gameboard[t]+"|");
-			y++;
+			if (y<2){
+				System.out.print(gameboard[t]+"|");
+				y++;
+			}
+			else if (y==2){
+				System.out.print(gameboard[t]);
+				y++;
+			}
 			//System.out.print(y);
-			if (y>2){
+			else if (y>2){
 				System.out.print("\n");
+				t--;
 				y=0;
 			}
 		}
