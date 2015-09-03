@@ -38,36 +38,114 @@ public class tictactoe {
 		}
 		//char seven, eight, nine = ;
 		boolean game = true;
-			while (game=true){
-				drawgrid(gameboard);
+		int playernum = 1;
+			while (game==true){
+				drawGrid(gameboard);
 				System.out.print("\n");
-				System.out.println("player 1 select a square 1-9");
+				System.out.println("player "+ playernum + " select a square 1-9");
 				Scanner in = new Scanner (System.in);
 				String coordinate = in.nextLine();
-			}
-				
-	}
-			
-
-	public static void drawgrid(char[] gameboard) {
-		int y = 0;
-		for (int t=0; t<9; t++) {
-			if (y<2){
-				System.out.print(gameboard[t]+"|");
-				y++;
-			}
-			else if (y==2){
-				System.out.print(gameboard[t]);
-				y++;
-			}
-			//System.out.print(y);
-			else if (y>2){
-				System.out.print("\n");
-				t--;
-				y=0;
+				try {
+					int loc = Integer.parseInt(coordinate.trim());
+					if (loc>0 && loc<10 ){
+						loc--;
+						if (playernum == 1 && gameboard[loc] != 'X' && gameboard[loc] != 'O'){
+							gameboard[loc] = 'X';
+							if (playernum == 1){
+								playernum = 2;
+							}
+							else if (playernum ==2){
+								playernum = 1;
+							}
+						}
+						else if (playernum == 2 && gameboard[loc] != 'X' && gameboard[loc] != 'O'){
+							gameboard[loc] = 'O';
+							if (playernum == 1){
+								playernum = 2;
+							}
+							else if (playernum ==2){
+								playernum = 1;
+							}
+						}
+						else {
+							System.out.println("location already occupied");
+						}
+					}
+					else{
+						System.out.println("please pick a number 1-9");
+					}
+				}
+				catch (NumberFormatException nfe) {
+					System.out.println("invalid coordinate, please pick a number 1-9");
+				}
+				if (checkWinner(gameboard) == true){
+					System.out.println("end");
+					game = false;
+				}
 			}
 		}
-	}
+		
+		public static boolean checkWinner(char[] gameboard){
+			//for (int q=0; q<9; q++){
+				//if (q!=5){
+					//if (gameboard[5] == gameboard[q])
+			if (gameboard[0]==('X'|'O')){
+				if (gameboard[0]==(gameboard[1]&gameboard[2])){
+					return true;
+				}
+				else if (gameboard[0]==(gameboard[4]&gameboard[8])){
+					return true;
+				}
+				if (gameboard[0]==(gameboard[3]&gameboard[6])){
+					return true;
+				}
+			}
+			else if (gameboard[1]==('X'|'O')){
+				if (gameboard[1]==(gameboard[4]&gameboard[7])){
+					return true;
+				}
+			}
+			else if (gameboard[2]==('X'|'O')){
+				if (gameboard[2]==(gameboard[5]&gameboard[8])){
+					return true;
+				}
+			}
+			else if (gameboard[3]==('X'|'O')){
+				if (gameboard[3]==(gameboard[4]&gameboard[5])){
+					return true;
+				}
+			}
+			else if (gameboard[6]==('X'|'O')){
+				if (gameboard[6]==(gameboard[7]&gameboard[8])){
+					return true;
+				}
+				if (gameboard[6]==(gameboard[4]&gameboard[2])){
+					return true;
+				}
+			}
+			return false;
+			
+		}
+	
+		public static void drawGrid(char[] gameboard) {
+			int y = 0;
+			for (int t=0; t<9; t++) {
+				if (y<2){
+					System.out.print(gameboard[t]+"|");
+					y++;
+				}
+				else if (y==2){
+					System.out.print(gameboard[t]);
+					y++;
+				}
+			//System.out.print(y);
+				else if (y>2){
+					System.out.print("\n");
+					t--;
+					y=0;
+				}
+			}
+		}
 }
 	
 
