@@ -78,7 +78,7 @@ public class tictactoe {
 				catch (NumberFormatException nfe) {
 					System.out.println("invalid coordinate, please pick a number 1-9");
 				}
-				if (checkWinner(gameboard) == true){
+				if (checkWinner(gameboard)){
 					System.out.println("end");
 					game = false;
 				}
@@ -86,14 +86,26 @@ public class tictactoe {
 		}
 		
 		public static boolean checkWinner(char[] gameboard){
-			//for (int q=0; q<9; q++){
-				//if (q!=5){
-					//if (gameboard[5] == gameboard[q])
-			if (gameboard[0]==('X'|'O')){
+			int i = 0;
+			while (i==0){
+				if (gameboard [i]=='_' || gameboard[i]==' '){
+					break;
+				}
+				else if(gameboard[i]!=gameboard[i++]){
+					break;
+				}
+				else if(gameboard[i]!=gameboard[i+2]){
+					break;
+				}
+				else return true;
+			}
+			return false;
+			
+			/*if (gameboard[0]==('X'|'O')){
 				if (gameboard[0]==(gameboard[1]&gameboard[2])){
 					return true;
 				}
-				else if (gameboard[0]==(gameboard[4]&gameboard[8])){
+				if (gameboard[0]==(gameboard[4]&gameboard[8])){
 					return true;
 				}
 				if (gameboard[0]==(gameboard[3]&gameboard[6])){
@@ -124,7 +136,7 @@ public class tictactoe {
 				}
 			}
 			return false;
-			
+			*/
 		}
 	
 		public static void drawGrid(char[] gameboard) {
