@@ -27,18 +27,16 @@ public class tictactoe {
 		 			X|X|X
 		 			 |O|O
 		 			player 1 wins!*/
-		//char one, two, three, four, five, six = _;
 		char[] gameboard = new char[9];
 		for (int i=0; i<9; i++){
 			gameboard[i]= '_';
 			if (i>5){
 				gameboard[i]=' ';
 			}
-			//System.out.print(gameboard[i]);
 		}
-		//char seven, eight, nine = ;
 		boolean game = true;
 		int playernum = 1;
+		int q = 0;
 			while (game==true){
 				drawGrid(gameboard);
 				System.out.print("\n");
@@ -52,18 +50,22 @@ public class tictactoe {
 						if (playernum == 1 && gameboard[loc] != 'X' && gameboard[loc] != 'O'){
 							gameboard[loc] = 'X';
 							if (playernum == 1){
+								q++;
 								playernum = 2;
 							}
 							else if (playernum ==2){
+								q++;
 								playernum = 1;
 							}
 						}
 						else if (playernum == 2 && gameboard[loc] != 'X' && gameboard[loc] != 'O'){
 							gameboard[loc] = 'O';
 							if (playernum == 1){
+								q++;
 								playernum = 2;
 							}
 							else if (playernum ==2){
+								q++;
 								playernum = 1;
 							}
 						}
@@ -79,64 +81,105 @@ public class tictactoe {
 					System.out.println("invalid coordinate, please pick a number 1-9");
 				}
 				if (checkWinner(gameboard)){
-					System.out.println("end");
+					drawGrid(gameboard);
+					System.out.print("\n");
+					if (playernum == 1){
+						playernum = 2;
+					}
+					else if (playernum ==2){
+						playernum = 1;
+					}
+					System.out.println("player "+playernum+" wins!");
+					game = false;
+					break;
+				}
+				if (q==9){
+					System.out.print("tie");
 					game = false;
 				}
 			}
 		}
 		
 		public static boolean checkWinner(char[] gameboard){
+			int k = 0;
 			int i = 0;
-			while (i==0){
-				if (gameboard [i]=='_' || gameboard[i]==' '){
-					break;
+			while (k==0){
+				while(i<9){
+					if (gameboard[i] =='_' || gameboard[i] ==' '){
+						break;
+					}
+					else if(gameboard[i]!=gameboard[i+1]){
+						break;
+					}
+					else if(gameboard[i]!=gameboard[i+2]){
+						break;
+					}
+					else return true;
 				}
-				else if(gameboard[i]!=gameboard[i++]){
-					break;
+				i=i+3;
+				if(i>=9){
+					k=k+1;
 				}
-				else if(gameboard[i]!=gameboard[i+2]){
-					break;
-				}
-				else return true;
 			}
-			return false;
+			i=0;
+			while (k==1){
+				while(i<3){
+					if (gameboard[i] =='_' || gameboard[i] ==' '){
+						break;
+					}
+					else if(gameboard[i]!=gameboard[i+3]){
+						break;
+					}
+					else if(gameboard[i]!=gameboard[i+6]){
+						break;
+					}
+					else return true;
+				}
+				i=i+1;
+				if(i>=3){
+					k=k+1;
+				}
+			}
+			i=0;
+			while (k==2){
+					while(i<1){
+						if (gameboard[i] =='_' || gameboard[i] ==' '){
+							break;
+						}
+						else if(gameboard[i]!=gameboard[i+4]){
+							break;
+						}
+						else if(gameboard[i]!=gameboard[i+8]){
+							break;
+						}
+						else return true;
+					}
+					i=i+1;
+					if(i>=3){
+						k=k+1;
+					}
+			}
+			i=2;
+			while (k==3){
+					while(i<3){
+						if (gameboard[i] =='_' || gameboard[i] ==' '){
+							break;
+						}
+						else if(gameboard[i]!=gameboard[i+2]){
+							break;
+						}
+						else if(gameboard[i]!=gameboard[i+4]){
+							break;
+						}
+						else return true;
+					}
+					i=i+1;
+					if(i>=3){
+						k=k+1;
+					}
+			}
 			
-			/*if (gameboard[0]==('X'|'O')){
-				if (gameboard[0]==(gameboard[1]&gameboard[2])){
-					return true;
-				}
-				if (gameboard[0]==(gameboard[4]&gameboard[8])){
-					return true;
-				}
-				if (gameboard[0]==(gameboard[3]&gameboard[6])){
-					return true;
-				}
-			}
-			else if (gameboard[1]==('X'|'O')){
-				if (gameboard[1]==(gameboard[4]&gameboard[7])){
-					return true;
-				}
-			}
-			else if (gameboard[2]==('X'|'O')){
-				if (gameboard[2]==(gameboard[5]&gameboard[8])){
-					return true;
-				}
-			}
-			else if (gameboard[3]==('X'|'O')){
-				if (gameboard[3]==(gameboard[4]&gameboard[5])){
-					return true;
-				}
-			}
-			else if (gameboard[6]==('X'|'O')){
-				if (gameboard[6]==(gameboard[7]&gameboard[8])){
-					return true;
-				}
-				if (gameboard[6]==(gameboard[4]&gameboard[2])){
-					return true;
-				}
-			}
 			return false;
-			*/
 		}
 	
 		public static void drawGrid(char[] gameboard) {
@@ -150,7 +193,6 @@ public class tictactoe {
 					System.out.print(gameboard[t]);
 					y++;
 				}
-			//System.out.print(y);
 				else if (y>2){
 					System.out.print("\n");
 					t--;
