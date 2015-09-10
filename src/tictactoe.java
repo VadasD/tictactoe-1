@@ -1,7 +1,11 @@
 import java.util.Scanner;
 public class tictactoe {
 
-
+/**
+ * @author Andrew Laurita
+ * @param args
+ * Main method which holds the game loop
+ */
 	public static void main(String[] args) {
 		/*psuedo code for tic tac toe
 		program starts and creates 9 variables one for each square
@@ -94,12 +98,19 @@ public class tictactoe {
 					break;
 				}
 				if (q==9){
+					drawGrid(gameboard);
+					System.out.print("/n");
 					System.out.print("tie");
 					game = false;
 				}
 			}
 		}
-		
+	/**
+	 * 
+	 * @param gameboard
+	 * @return
+	 * Method that checks the game board to see if either player has won yet
+	 */
 		public static boolean checkWinner(char[] gameboard){
 			int k = 0;
 			int i = 0;
@@ -181,7 +192,11 @@ public class tictactoe {
 			
 			return false;
 		}
-	
+	/**
+	 * 
+	 * @param gameboard
+	 * Draws game board in output console
+	 */
 		public static void drawGrid(char[] gameboard) {
 			int y = 0;
 			for (int t=0; t<9; t++) {
