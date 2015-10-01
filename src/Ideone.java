@@ -1,10 +1,14 @@
-/* package whatever; // don't place package name! */
+
 
 import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-/* Name of the class has to be "Main" only if the class is public. */
+/**
+ * 
+ * @author Andrew Laurita
+ * a text based fighting game between an unnamed hero and various enemies
+ */
 class Ideone
 {
 	public static void main (String[] args) throws java.lang.Exception
@@ -26,9 +30,14 @@ class Ideone
 	    	}
 	    	score++;
 	    } 
-	     
-		// ask the user to create a weapon and then create a champion. Extra credit if you build a battle function
 	}
+	/**
+	 * battle function
+	 * @param heroname
+	 * @param evil
+	 * @param lol
+	 * @param yo
+	 */
 	public static void toBattle(String heroname, Monster evil, Champion lol, Weapon yo){
 		System.out.println(heroname+" has encountered a "+ evil.getName());
 		int dmgdealt; int choice;
@@ -43,9 +52,14 @@ class Ideone
 				System.out.println(dmgdealt+" damage was dealt to the "+evil.getName());
 			}
 			else if (choice==2){
+				if (lol.getHealth()>=100){
+					System.out.println("your health is already full");
+				}
+				else {
 				dmgdealt = ((int)(Math.random()*5)+12)*-1;
 				System.out.println(lol.getName()+" drinks a potion and restores "+-dmgdealt);
 				lol.takeDmg(dmgdealt);
+				}
 			}
 			System.out.println("the "+evil.getName()+" attacks");
 			dmgdealt=evil.getDmg()+ (int)(Math.random()*3)+1;
@@ -59,6 +73,11 @@ class Ideone
 		}
 	}
 }
+/**
+ * 
+ * @author Andrew
+ * class for the various monsters
+ */
 class Monster
 {
 	private String name;
@@ -99,15 +118,19 @@ class Monster
 		return dmg;
 	}
 }
-
-class Champion  //if this class was in a separate file it would need to be called public
+/**
+ * 
+ * @author Andrew_2
+ * Champion class
+ */
+class Champion  
 {
 
 	private int health;
 	private String name;
 	private Weapon arm;
 
-	public Champion(String heroname, Weapon wpnname)   //set the parameters of this constructor
+	public Champion(String heroname, Weapon wpnname)   
 	{
 		health = 100;
 		name = heroname;
@@ -115,7 +138,7 @@ class Champion  //if this class was in a separate file it would need to be calle
 
 	}
 
-	 public int getHealth()    //this is called a helper asset, you need to create a setHealth too. 
+	 public int getHealth()    
 	{
 		return health;
 	}
@@ -126,11 +149,15 @@ class Champion  //if this class was in a separate file it would need to be calle
 			return name;
 	}
 }
-
+/**
+ * 
+ * @author Andrew_2
+ * Class that holds the weapon data
+ */
 class Weapon
 {
 
-	private int dmg;  //let's learn to manage private functions
+	private int dmg; 
 	private String name;
 
 	public Weapon(String wpnname)  
@@ -144,6 +171,6 @@ class Weapon
 	public String getName(){
 		return name;
 	}
-	//create get functions a SET is not required
+	
 
 }
